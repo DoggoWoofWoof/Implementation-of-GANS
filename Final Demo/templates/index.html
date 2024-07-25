@@ -14,7 +14,7 @@
             color: #FFFFFF;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
             transition: background-color 0.3s ease;
             line-height: 1.6;
         }
@@ -61,8 +61,8 @@
             padding: 30px;
             border-radius: 15px;
             margin: 30px auto;
-            width: calc(100% - 60px); /* Full width with padding */
-            max-width: 1200px; /* Increase max-width to cover more of the page */
+            width: calc(100% - 60px);
+            max-width: 1200px;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
             text-align: center;
             border: 2px solid #1DB954;
@@ -105,58 +105,152 @@
             justify-content: space-around;
             margin-bottom: 20px;
             gap: 20px;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            flex-wrap: wrap;
         }
 
         .upload-section {
             flex: 1;
             position: relative;
-            min-width: 200px; /* Minimum width for smaller screens */
+            min-width: 200px;
         }
 
         .upload-section input[type="file"] {
             display: none;
         }
 
-        .upload-section label {
-            display: block;
-            background-color: #1DB954;
-            color: #FFFFFF;
-            padding: 15px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+.upload-section label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100px; /* Decreased height */
+    border-radius: 8px; /* Slightly smaller border radius */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-size: 1.2em; /* Decreased font size */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px; /* Adjusted padding */
+    box-sizing: border-box; /* Ensure padding is included in width/height */
+}
 
-        .upload-section label::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background-color: rgba(29, 185, 84, 0.2);
-            transform: translate(-50%, -50%) scale(0);
-            border-radius: 50%;
-            transition: transform 0.5s ease;
-        }
+.upload-section label span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px 10px; /* Decreased padding for the text */
+    background-color: rgba(0, 0, 0, 0.8); /* Solid background with 80% opacity */
+    border-radius: 4px; /* Smaller border radius */
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    z-index: 2; /* Ensure the text is above the background image */
+    display: inline-block; /* Ensure block-like behavior */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /* Optional shadow for better contrast */
+}
 
-        .upload-section label:hover {
-            background-color: #1ED760;
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
-        }
 
-        .upload-section label:hover::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
 
-        .upload-form input[type="submit"] {
+.upload-section label.sketch {
+    background-image: url('images/sketch.jpg');
+    color: black;
+    text-shadow: 1px 1px 3px white;
+    font-size: 2.4em; /* Increased font size for sketch */
+}
+
+.upload-section label.target {
+    background-image: url('images/target.jpg');
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    font-size: 2.4em; /* Increased font size for target */
+}
+
+.upload-section label.sketch span {
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for contrast */
+    color: black; /* Black text */
+    font-size: 1.8em;
+}
+
+.upload-section label.target span {
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background for contrast */
+    color: white; /* White text */
+    font-size: 1.8em;
+}
+
+.upload-section label:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
+    background-color: rgba(211, 211, 211, 0.7); /* Slightly darker grey background on hover */
+}
+
+.uploaded-file {
+    background-color: #1A1A1A; /* Background color similar to other sections */
+    padding: 15px; /* Padding around the file name */
+    border-radius: 10px; /* Rounded corners for consistency */
+    margin: 20px auto; /* Centered with margin for spacing */
+    width: calc(100% - 40px); /* Responsive width */
+    max-width: 400px; /* Maximum width */
+    text-align: center; /* Center text alignment */
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4); /* Similar box shadow for hover effect */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.uploaded-file:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 18px rgba(29, 185, 84, 0.4); /* More pronounced shadow on hover */
+}
+
+.file-name {
+    display: none; /* Initially hide the filename box */
+    padding: 10px;
+    background-color: #2A2A2A; /* Dark background to match other elements */
+    color: #1DB954; /* Text color to match the design */
+    font-size: 1.4em; /* Increased font size for better visibility */
+    border-radius: 5px; /* Rounded corners for consistency */
+    margin-top: 10px; /* Space above the filename */
+    text-align: center; /* Center text */
+    text-transform: none; /* Remove capitalization */
+    font-weight: bold; /* Make text bold for better visibility */
+    border: 2px solid #FFFFFF; /* White border */
+    position: relative; /* For positioning pseudo-elements */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+.file-name {
+    display: none; /* Initially hide the filename box */
+    padding: 5px 10px; /* Reduced padding for a smaller box */
+    background-color: #2A2A2A; /* Dark background to match other elements */
+    color: #1DB954; /* Text color to match the design */
+    font-size: 1em; /* Reduced font size for a smaller box */
+    border-radius: 5px; /* Rounded corners for consistency */
+    text-align: center; /* Center text */
+    text-transform: none; /* Remove capitalization */
+    font-weight: bold; /* Make text bold for better visibility */
+    position: absolute; /* Position it absolutely within the parent container */
+    top: 100%; /* Position it below the parent element */
+    left: 50%; /* Center horizontally */
+    border: none;
+    transform: translateX(-50%); /* Adjust horizontal centering */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    width: fit-content; /* Adjust width to fit the content */
+    max-width: 200px; /* Limit the maximum width if needed */
+    text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black; /* Text border effect */
+}
+
+.file-name:hover {
+    display: block; /* Ensure the filename box is visible on hover */
+    background-color: #333333; /* Slightly lighter background on hover */
+    color: #1ED760; /* Change text color on hover */
+    /* Create pop-up effect */
+    transform: translateX(-50%) scale(1.05); /* Slightly enlarge the element */
+    box-shadow: 0 4px 8px rgba(29, 185, 84, 0.5); /* Subtle shadow effect on hover */
+}
+
+   .upload-form input[type="submit"] {
             background-color: #1DB954;
             color: white;
             border: none;
@@ -182,13 +276,13 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
-            gap: 20px; /* Add gap between images */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .image-item {
             flex: 1;
-            min-width: 200px; /* Minimum width for smaller screens */
+            min-width: 200px;
             margin: 0 10px;
             background-color: #2A2A2A;
             padding: 15px;
@@ -224,61 +318,80 @@
             box-shadow: 0 6px 12px rgba(29, 185, 84, 0.4);
         }
 
-.scores {
-    margin: 20px auto; /* Center horizontally with margin auto */
-    text-align: center;
-    font-size: 1.1em;
-    background-color: #2A2A2A;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #1DB954;
-    width: 80%; /* Define a width or max-width if necessary */
-    max-width: 600px; /* Optional: limit the maximum width */
-}
-
+        .scores {
+            margin: 20px auto;
+            text-align: center;
+            font-size: 1.1em;
+            background-color: #2A2A2A;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #1DB954;
+            width: 80%;
+            max-width: 600px;
+        }
 
         .scores p {
             margin: 10px 0;
         }
 
-        .how-it-works p {
-            text-align: left;
-            margin: 10px auto;
-            font-size: 1.1em;
-            color: #CCCCCC;
-        }
+.how-it-works {
+    background-color: #1A1A1A;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 30px auto;
+    max-width: 1200px; /* Match the max-width of other sections */
+    border: 2px solid #1DB954;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+    font-family: 'Roboto', sans-serif;
+}
 
-        .how-it-works ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 20px 0;
-            font-size: 1.1em;
-        }
+.how-it-works h2 {
+    color: #1DB954;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #1DB954;
+    padding-bottom: 10px;
+}
 
-        .how-it-works ul li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 20px;
-            color: #FFFFFF;
-        }
+.how-it-works .steps {
+    display: flex;
+    justify-content: space-between; /* Ensure equal spacing between boxes */
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-        .how-it-works ul li::before {
-            content: '✔';
-            position: absolute;
-            left: 0;
-            color: #1DB954;
-        }
+.how-it-works .step {
+    background-color: #2A2A2A;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #1DB954;
+    text-align: center;
+    flex: 1 1 30%; /* Flexbox property to ensure equal size and wrapping */
+    box-sizing: border-box;
+    min-width: 250px; /* Ensure minimum width for responsive design */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
 
-        .how-it-works a {
-            color: #1ED760;
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: border-bottom 0.3s ease;
-        }
+.how-it-works .step:hover {
+    transform: translateY(-10px); /* Move up on hover */
+    box-shadow: 0 8px 16px rgba(29, 185, 84, 0.5); /* Subtle shadow effect on hover */
+}
 
-        .how-it-works a:hover {
-            border-bottom: 2px solid #1ED760;
-        }
+.how-it-works .step h3 {
+    margin: 0;
+    color: #1ED760; /* Different color for step headings */
+    font-size: 1.5em;
+    border-bottom: 2px solid #1ED760;
+    padding-bottom: 10px;
+}
+
+.how-it-works .step p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #CCCCCC;
+}
 
     </style>
 </head>
@@ -287,36 +400,50 @@
     
     <div class="description">
         <p>Welcome to Sketch2Face, where hopefully your sketches are converted to their corresponding faces.</p>
-	<p>Upload your sketch and see the magic happen!</p>
+        <p>Upload your sketch and see the magic happen!</p>
     </div>
     
-    <div class="upload-form">
-        <h2 class="upload-header">Choose Your Files</h2>
-        <form id="upload-form" enctype="multipart/form-data">
-            <div class="upload-row">
-                <div class="upload-section">
-                    <input type="file" id="sketch-input" name="sketch">
-                    <label for="sketch-input">Sketch</label>
-                    <span id="sketch-filename"></span>
-                </div>
-                <div class="upload-section">
-                    <input type="file" id="target-input" name="target">
-                    <label for="target-input">Target</label>
-                    <span id="target-filename"></span>
-                </div>
+<div class="upload-form">
+    <h2 class="upload-header">Choose Your Files</h2>
+    <form id="upload-form" enctype="multipart/form-data">
+        <div class="upload-row">
+            <div class="upload-section">
+                <input type="file" id="sketch-input" name="sketch" onchange="updateFilename('sketch')">
+                <label for="sketch-input" class="sketch">Sketch</label>
+                <span id="sketch-filename" class="file-name"></span>
             </div>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    
+            <div class="upload-section">
+                <input type="file" id="target-input" name="target" onchange="updateFilename('target')">
+                <label for="target-input" class="target">Target</label>
+                <span id="target-filename" class="file-name"></span>
+            </div>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
     <div id="image-sets-container"></div>
     
-    <div class="how-it-works">
-        <h2>How It Works</h2>
-        <p>1. Upload your sketch and target image.</p>
-        <p>2. Our pretrained model processes the images and generates the output.</p>
-        <p>3. Compare the generated image with the target image using L2 and SSIM scores.</p>
+<div class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <h3>1. Upload Your Images</h3>
+            <p>Select and upload your sketch and target images. Ensure both images are in a suitable format and resolution.</p>
+        </div>
+        <div class="step">
+            <h3>2. Image Processing</h3>
+            <p>Our CGAN model processes the images to generate the output. This involves a generator and discriminator working together to transform your sketch into a detailed face.</p>
+        </div>
+        <div class="step">
+            <h3>3. Compare Results</h3>
+            <p>The generated image is compared with the target image using L2 and SSIM scores. This helps assess the quality and accuracy of the generated face.</p>
+        </div>
     </div>
+</div>
+
+
+
     
     <script>
         let setCounter = 1;
@@ -347,6 +474,20 @@
                 // handle error
             });
         });
+
+function updateFilename(type) {
+    var input = document.getElementById(type + '-input');
+    var filenameSpan = document.getElementById(type + '-filename');
+    if (input.files.length > 0) {
+        filenameSpan.textContent = input.files[0].name;
+        filenameSpan.style.display = 'block'; // Show the filename box
+    } else {
+        filenameSpan.textContent = ''; // Clear the text
+        filenameSpan.style.display = 'none'; // Hide the filename box
+    }
+}
+
+
         
         function renderImageSet(set) {
             const imageSetsContainer = document.getElementById('image-sets-container');

@@ -133,6 +133,10 @@ def upload_file():
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/images/<path:filename>')
+def serve_image(filename):
+    return send_from_directory('images', filename)
+
 def open_browser():
     time.sleep(1)  # Wait for the server to start
     webbrowser.open('http://127.0.0.1:5000/')
