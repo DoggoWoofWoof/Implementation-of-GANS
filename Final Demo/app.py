@@ -28,7 +28,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(MODEL_FOLDER, exist_ok=True)
 
 # Set the model path
-MODEL_PATH = os.path.join(MODEL_FOLDER, "generator_epoch_1.h5")
+MODEL_PATH = os.path.join(MODEL_FOLDER, 'generator_epoch_27.h5')
 
 # Load the model (you'll need to place the model file in the 'model' folder)
 g_model = load_model(MODEL_PATH)
@@ -36,7 +36,7 @@ g_model = load_model(MODEL_PATH)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def load_and_preprocess_image(image_path, target_size=(256, 256)):
+def load_and_preprocess_image(image_path, target_size=(128, 128)):
     img = load_img(image_path, target_size=target_size)
     img = img_to_array(img)
     norm_img = (img - 127.5) / 127.5
@@ -95,12 +95,12 @@ def upload_file():
             
             # Resize and save sketch
             sketch_img = Image.open(sketch_file)
-            sketch_img = sketch_img.resize((256, 256), Image.LANCZOS)
+            sketch_img = sketch_img.resize((128, 128), Image.LANCZOS)
             sketch_img.save(sketch_path)
             
             # Resize and save target
             target_img = Image.open(target_file)
-            target_img = target_img.resize((256, 256), Image.LANCZOS)
+            target_img = target_img.resize((128, 128), Image.LANCZOS)
             target_img.save(target_path)
             
             # Process images
@@ -139,7 +139,9 @@ def serve_image(filename):
 
 def open_browser():
     time.sleep(1)  # Wait for the server to start
-    webbrowser.open('http://127.0.0.1:5000/')
+    edge_path = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
+    webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+    webbrowser.get('edge').open('http://127.0.0.1:5000/')
 
 if __name__ == '__main__':
     threading.Thread(target=open_browser).start()
