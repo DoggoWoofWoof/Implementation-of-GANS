@@ -4,4 +4,5 @@ To run the Final Demo you need to put your model file inside the model folder
 
 References:
 1. https://github.com/aladdinpersson/Machine-Learning-Collection/tree/master/ML/Pytorch/GANs/Pix2Pix
+2. https://github.com/Malikanhar/Face-Sketch-to-Image-Generation-using-GAN
 
